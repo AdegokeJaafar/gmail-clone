@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
 import Mail from "./Mail/Mail";
 import EmailList from "./EmailList/EmailList"
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 function App() {
   return (
