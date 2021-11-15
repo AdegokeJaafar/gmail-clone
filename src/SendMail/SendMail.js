@@ -3,39 +3,51 @@ import './SendMail.css'
 import CloseIcon from "@material-ui/icons/Close"
 import { Button } from "@material-ui/core"
 import { useForm } from "react-hook-form"
+import { useDispatch } from "react-redux"
+import { closeSendMessage } from "../features/mailSlice"
+
+
 
 function SendMail() {
-    const { register, handleSubmit, watch, errors } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
+    const { register, handleSubmit} = useForm();
+    const dispatch = useDispatch();
+    
+    const onSubmit = (formData) => {
+        console.log(formData);
     };
 
     return (
         <div className="sendMail">
             <div className="sendMail-header">
                 <h3>New Message</h3>
-                <CloseIcon className="sendMail-close" />
+                <CloseIcon onClick={() => dispatch(closeSendMessage())}
+                className="sendMail-close" />
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input 
-                name="to" 
-                placeholder="To" 
-                type="text" 
-                {...register('name', { required: true})}
+                    name="to" 
+                    placeholder="To" 
+                    type="text" 
+                    {...register('to', { required: true})}
                 />
+                
+
                 <input 
-                name="subject" 
-                placeholder="Subject" 
-                type="text" 
-                {...register('name', { required: true})}
+                    name="subject" 
+                    placeholder="Subject" 
+                    type="text" 
+                    {...register('subject', { required: true})}
                 />
+                
+
                 <input 
-                name="message" 
-                placeholder="Message..." 
-                type="text" 
-                {...register('name', { required: true})}
+                    name="message" 
+                    placeholder="Message..." 
+                    type="text" 
+                    {...register('message ', { required: true})}
                 />
+                
             
             <div className="sendMail-options">
                 <Button className="sendMail-send">Send</Button>
