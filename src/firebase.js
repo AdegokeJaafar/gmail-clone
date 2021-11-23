@@ -1,40 +1,38 @@
-// // import firebase from 'firebase'
+import { initializeApp } from 'firebase/app'
+import {
+    getFirestore, collection, getDocs
+} from 'firebase/firestore'
 
 
-// // const firebaseConfig = {
-// //   apiKey: "AIzaSyBep1XzuDwWnE3QH8gEE_RZecd3BUZZXDU",
-// //   authDomain: "clone-526df.firebaseapp.com",
-// //   projectId: "clone-526df",
-// //   storageBucket: "clone-526df.appspot.com",
-// //   messagingSenderId: "306160929361",
-// //   appId: "1:306160929361:web:a289411011ea8de28a4670"
-// // };
 
-// // const firebaseApp = firebase.initializeApp(firebaseConfig)
+const firebaseConfig = {
+    apiKey: "AIzaSyD93ZHkACLuN7j97Z94T0YOIH3CkTNicWU",
+    authDomain: "clone-77c47.firebaseapp.com",
+    projectId: "clone-77c47",
+    storageBucket: "clone-77c47.appspot.com",
+    messagingSenderId: "552981280402",
+    appId: "1:552981280402:web:5c88aff63e420d1d07d84b",
+    measurementId: "G-WXPS5F2XCR"
+  };
+// init firebase app
+  initializeApp(firebaseConfig)
 
-// // const db = firebaseApp.firebase();
-// // const auth = firebase.auth();
-// // const provider = new firebase.auth.GoogleAuthProvider();
-
-// // export { db, auth, provider };
-
-
-// import firebase from 'firebase';
+//   init services
+  const db = getFirestore()
 
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBep1XzuDwWnE3QH8gEE_RZecd3BUZZXDU",
-//   authDomain: "clone-526df.firebaseapp.com",
-//   projectId: "clone-526df",
-//   storageBucket: "clone-526df.appspot.com",
-//   messagingSenderId: "306160929361",
-//   appId: "1:306160929361:web:a289411011ea8de28a4670"
-// };
+//   collection ref
+  const colRef = collection(db, 'mail')
 
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-// const db = firebaseApp.firestore();
-// const auth = firebase.auth();
-// const provider = new firebase.auth.GoogleAuthProvider();
-
-// export { db, auth, provider };
+//   get collectin data
+getDocs(colRef)
+  .then((snapshot) => {
+    let mail = []
+    snapshot.docs.forEach((doc) => {
+        mail.push({ ...doc.data(), id: doc.id })
+    })
+    console.log(mail);
+  })
+  .catch(err => {
+     console.log(err.message); 
+  })
