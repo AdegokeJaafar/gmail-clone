@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import {
-    getFirestore, collection, getDocs
-} from 'firebase/firestore'
-
+import { getFirestore } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 
 const firebaseConfig = {
@@ -19,20 +17,29 @@ const firebaseConfig = {
 
 //   init services
   const db = getFirestore()
+  const auth = getAuth()
+  const provider = new getAuth.GoogleAuthProvider()
 
 
 //   collection ref
-  const colRef = collection(db, 'mail')
+  // const colRef = collection(db, 'mail')
 
 //   get collectin data
-getDocs(colRef)
-  .then((snapshot) => {
-    let mail = []
-    snapshot.docs.forEach((doc) => {
-        mail.push({ ...doc.data(), id: doc.id })
-    })
-    console.log(mail);
-  })
-  .catch(err => {
-     console.log(err.message); 
-  })
+// getDocs(colRef)
+//   .then((snapshot) => {
+    
+//   })
+//   .catch(err => {
+//      console.log(err.message); 
+//   })
+
+//   onSnapshot(colRef, (snapshot) => {
+//     let mail = []
+//     snapshot.docs.forEach((doc) => {
+//         mail.push({ ...doc.data(), id: doc.id })
+//     })
+//     console.log(mail);
+
+//   })
+
+  export { db, auth, provider}

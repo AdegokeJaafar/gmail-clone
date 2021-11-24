@@ -29,7 +29,7 @@ function EmailRow({id, title, subject, description, time}) {
 
 
     return (
-        <div onClick={() => history.push("/mail")} className="emailRow">
+        <div onClick={openMail}className="emailRow">
             <div className="emailRow-options">
                 <Checkbox />
                 <IconButton>

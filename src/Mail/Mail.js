@@ -20,8 +20,8 @@ import { useSelector } from 'react-redux';
 
 
 function Mail() {
-const history = useHistory();
-const selectedMail = useSelector(selectOpenMail);
+    const history = useHistory();
+    const selectedMail = useSelector(selectOpenMail);
 
 
     return (
